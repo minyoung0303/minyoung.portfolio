@@ -16,7 +16,7 @@ const skillGroups = [
       },
       {
         name: 'PostgreSQL',
-        desc: '정규화·인덱싱·Full-Text Search로 조회 성능 개선',
+        desc: 'Full-Text Search 전환과 인덱스를 타는 쿼리 재작성으로 검색 성능 개선',
       },
       {
         name: 'SQL 튜닝',

@@ -47,15 +47,13 @@ function Projects() {
       period: '2023.09 — 2023.11',
       type: 'Team',
       summary:
-        '영수증·냉장고 재료 관리를 기반으로 레시피를 공유하는 웹 서비스입니다. 백엔드 데이터 구조 전반을 맡아 ERD 설계부터 인증, 조회 성능까지 담당했습니다.',
+        '영수증·냉장고 재료 관리를 기반으로 레시피를 공유하는 웹 서비스입니다. 백엔드에서 ERD 설계와 인증을 맡았습니다.',
       role: [
         '백엔드 ERD 및 아키텍처 설계 (팀 리뷰를 거쳐 개정)',
-        '재료·레시피·사용자 관계를 분리해 정규화하고 데이터 중복 제거',
-        '조회 패턴을 기준으로 PostgreSQL 인덱스를 설계해 스캔 범위 축소',
-        'JWT 기반 인증/인가 구조 설계로 사용자별 데이터 접근 범위 분리',
+        'JWT 기반 인증/인가 구현으로 사용자별 데이터 접근 범위 분리',
       ],
-      result: '스키마 정규화와 인덱싱으로 페이지 로딩 시간 약 30% 단축, 데이터 정합성 확보',
-      tech: ['Python', 'Django', 'DRF', 'PostgreSQL', '정규화', '인덱싱', 'JWT', 'Docker', 'AWS'],
+      result: '해커톤 기간 안에 ERD 설계와 인증 구현을 마쳐 MVP 완성에 기여',
+      tech: ['Python', 'Django', 'DRF', 'PostgreSQL', 'JWT', 'Docker', 'AWS'],
       images: [
         `${base}images/ndjango-erd1.png`,
         `${base}images/ndjango-architecture.png`,
