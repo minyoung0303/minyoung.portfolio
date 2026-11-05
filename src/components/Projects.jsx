@@ -13,28 +13,34 @@ function Projects() {
 
   const projects = [
     {
-      title: '대동맛지도',
-      subtitle: '개인 프로젝트 · Apps in Toss 출시 예정',
-      period: '2026.05 — 현재',
+      title: '예약보드 (YeyakBo)',
+      subtitle: '개인 프로젝트 · 스크린골프 매장 실사용 중',
+      period: '2026.08 — 운영 중',
       type: 'Solo',
       summary:
-        '사용자 위치 주변의 맛집·카페를 탐색하는 위치 기반 서비스입니다. Python만 쓰던 상태에서 Java · Spring Boot를 새로 익혀 백엔드를 처음부터 직접 설계했고, DB 스키마 버전 관리까지 포함해 혼자 운영 가능한 구조로 만들었습니다.',
+        '스크린골프 매장 카운터용 예약 관리 프로그램입니다. 수기 장부에서 생기던 종료 시각 오산과 타석 중복 예약을 자동 계산과 저장 단계 차단으로 해결했습니다.',
       role: [
-        'Java 21 · Spring Boot 기반 장소 · 리뷰 REST API 설계 및 구현',
-        'Spring Data JPA로 도메인 매핑, Flyway로 DB 스키마 마이그레이션 이력 관리',
-        '카테고리 필터 · 리뷰 기능 개발 및 검색 로직 개선',
-        '탐색 반경을 1km → 2km로 확대하며 늘어난 조회 범위에 맞춰 응답 구조 조정',
-        'React(Vite) 프론트엔드와 Kakao Maps SDK 연동까지 단독 처리',
+        { label: '예약 계산', text: '인원 × 게임 수로 종료 시각 자동 계산' },
+        { label: '중복 차단', text: '겹침 검사와 저장을 한 트랜잭션으로 처리' },
+        { label: '실시간 동기화', text: '카운터 PC를 매장 내 서버로 두고 SSE로 폰·태블릿에 전파' },
+        { label: '접근 제어', text: 'PIN(scrypt 해시) · 시도 제한 · CSRF 차단' },
+        { label: 'AI 활용', text: 'AI로 구현하고 자동 점검 80항목으로 검증' },
       ],
-      result:
-        '백엔드 · 프론트 · 배포를 혼자 담당해 Apps in Toss 미니앱 출시 준비 단계까지 진행. 새로운 언어와 프레임워크를 실제 서비스에 적용할 수 있음을 확인한 프로젝트입니다. (진행 중)',
-      tech: ['Java 21', 'Spring Boot', 'Spring Data JPA', 'Flyway', 'PostgreSQL', 'React', 'Vite', 'Kakao Maps', 'Apps in Toss'],
+      result: [
+        '매장 실사용 중 · 직원 3명, 하루 약 10팀',
+        '동시 저장 5회 중 1건만 성공 검증',
+        'push마다 CI 검증, 태그 푸시 시 설치파일 자동 릴리스',
+      ],
+      tech: ['TypeScript', 'Node.js', 'node:sqlite', 'SSE', 'React', 'Electron', 'Vite', 'GitHub Actions'],
       images: [
-        `${base}images/daedong-matmap-gantt.png`,
-        `${base}images/daedong-matmap-system.png`,
-        `${base}images/kakaomap.png`,
+        `${base}images/yeyakbo-board.png`,
+        `${base}images/yeyakbo-new-reservation.png`,
+        `${base}images/yeyakbo-phone-slots.png`,
       ],
-      github: 'https://github.com/minyoung0303/daedong-matmap',
+      solvingCase: 'Case 05',
+      github: 'https://github.com/minyoung0303/screengolf-reservation-board',
+      release:
+        'https://github.com/minyoung0303/screengolf-reservation-board/releases/latest',
     },
     {
       title: '냉장고 해방일지',
@@ -42,16 +48,13 @@ function Projects() {
       period: '2023.09 — 2023.11',
       type: 'Team',
       summary:
-        '영수증·냉장고 재료 관리를 기반으로 레시피를 공유하는 웹 서비스입니다. 백엔드 데이터 구조 전반을 맡아 ERD 설계부터 인증, 조회 성능까지 담당했습니다.',
+        '영수증·냉장고 재료 관리를 기반으로 레시피를 공유하는 웹 서비스입니다. 백엔드에서 ERD 설계와 인증을 맡았습니다.',
       role: [
         '백엔드 ERD 및 아키텍처 설계 (팀 리뷰를 거쳐 개정)',
-        '재료·레시피·사용자 관계를 분리해 정규화하고 데이터 중복 제거',
-        '조회 패턴을 기준으로 PostgreSQL 인덱스를 설계해 스캔 범위 축소',
-        'JWT 기반 인증/인가 구조 설계로 사용자별 데이터 접근 범위 분리',
+        'JWT 기반 인증/인가 구현으로 사용자별 데이터 접근 범위 분리',
       ],
-      result: '스키마 정규화와 인덱싱으로 페이지 로딩 시간 약 30% 단축, 데이터 정합성 확보',
-      solvingCase: 'Case 02',
-      tech: ['Python', 'Django', 'DRF', 'PostgreSQL', '정규화', '인덱싱', 'JWT', 'Docker', 'AWS'],
+      result: '해커톤 기간 안에 ERD 설계와 인증 구현을 마쳐 MVP 완성에 기여',
+      tech: ['Python', 'Django', 'DRF', 'PostgreSQL', 'JWT', 'Docker', 'AWS'],
       images: [
         `${base}images/ndjango-erd1.png`,
         `${base}images/ndjango-architecture.png`,
@@ -134,15 +137,32 @@ function Projects() {
                 <div className="project-role">
                   <h4 className="project-label">담당 역할</h4>
                   <ul>
-                    {project.role.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))}
+                    {project.role.map((item, i) =>
+                      typeof item === 'string' ? (
+                        <li key={i}>{item}</li>
+                      ) : (
+                        <li key={i}>
+                          <strong className="project-role-label">
+                            {item.label}
+                          </strong>
+                          {item.text}
+                        </li>
+                      )
+                    )}
                   </ul>
                 </div>
 
                 <div className="project-result">
                   <h4 className="project-label">성과</h4>
-                  <p>{project.result}</p>
+                  {Array.isArray(project.result) ? (
+                    <ul className="project-result-list">
+                      {project.result.map((r, i) => (
+                        <li key={i}>{r}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p>{project.result}</p>
+                  )}
                   {project.solvingCase && (
                     <a className="project-solving-link" href="#problem-solving">
                       문제 해결 경험 {project.solvingCase}에서 원인 분석 과정
@@ -170,6 +190,17 @@ function Projects() {
                   <i className="fa-brands fa-github" aria-hidden="true"></i>
                   <span>GitHub</span>
                 </a>
+                {project.release && (
+                  <a
+                    href={project.release}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-link"
+                  >
+                    <i className="fa-solid fa-download" aria-hidden="true"></i>
+                    <span>설치파일</span>
+                  </a>
+                )}
               </div>
 
               {project.images.length > 0 && (

@@ -16,7 +16,7 @@ const skillGroups = [
       },
       {
         name: 'PostgreSQL',
-        desc: '정규화·인덱싱·Full-Text Search로 조회 성능 개선',
+        desc: 'Full-Text Search 전환과 인덱스를 타는 쿼리 재작성으로 검색 성능 개선',
       },
       {
         name: 'SQL 튜닝',
@@ -95,11 +95,6 @@ const skillGroups = [
  * 추정이나 희망이 아니라 결과물이 남아 있는 것만 적는다.
  */
 const learningTrack = [
-  {
-    tech: 'Java · Spring Boot',
-    when: '2026.05 —',
-    what: 'Python만 쓰던 상태에서 Spring Data JPA · Flyway를 새로 익혀 장소·리뷰 REST API를 직접 설계 (대동맛지도)',
-  },
   {
     tech: 'TypeScript · Deno · Hono',
     when: '2026.07 —',

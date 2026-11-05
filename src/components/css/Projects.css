@@ -133,6 +133,38 @@
   padding: 0.7rem 0.9rem;
 }
 
+/* 역할을 "항목명 + 한 줄"로 쓸 때의 항목명 */
+.project-role-label {
+  font-weight: 600;
+  color: var(--ink);
+  margin-right: 0.5rem;
+}
+
+/* 성과를 개조식으로 쓸 때. 문단형 성과와 같은 박스 안에 목록을 둔다 */
+.project-result-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  background: var(--accent-soft);
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 0.9rem;
+}
+
+.project-result-list li {
+  position: relative;
+  padding-left: 0.9rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  font-weight: 600;
+  color: var(--accent-strong);
+}
+
+.project-result-list li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+}
+
 /* 문제 해결 경험 섹션으로 연결하는 상호 참조 링크 */
 .project-solving-link {
   display: inline-block;
@@ -160,6 +192,9 @@
   margin-top: 1.3rem;
   padding-top: 1.2rem;
   border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
 }
 
 .project-link {
