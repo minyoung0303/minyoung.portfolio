@@ -145,6 +145,32 @@ const cases = [
       '비개발 직군의 업무 흐름을 먼저 관찰하면 만들 기능이 달라진다는 것을 알게 되었습니다.',
     tech: ['Python', 'Django', 'MariaDB', 'Slack Webhook', 'React', 'AWS ECS'],
   },
+  {
+    id: 'release-pipeline',
+    tag: 'CI/CD · 릴리스 자동화',
+    title: '나가지 않던 릴리스의 원인을 태그 위치와 업로드 주체에서 찾다',
+    context:
+      '예약보드 · 개인 프로젝트, 매장 운영 중 (GitHub Actions · electron-builder)',
+    problem:
+      'README에는 최신 설치파일 다운로드 링크가 있었지만 릴리스 페이지는 비어 있었습니다. 새 버전 v1.0.4 태그를 올리자 워크플로는 실행되었지만, 1.0.3 이름의 설치파일을 만든 뒤 GitHub 토큰이 없다는 오류로 실패했습니다.',
+    analysis: [
+      '기존 v1.0.2 · v1.0.3 태그는 히스토리를 정리하기 전의 커밋을 가리키고 있었고, 그 커밋에는 릴리스 워크플로가 없었습니다. 워크플로를 추가한 뒤로는 태그를 푸시한 적이 없어 한 번도 실행되지 않았습니다.',
+      'v1.0.4 태그는 버전을 올린 PR이 머지되기 전 커밋에 붙어 있어, 빌드가 1.0.3 코드로 진행되었습니다.',
+      'electron-builder는 태그가 붙은 커밋에서 빌드되면 스스로 GitHub 업로드를 시도합니다. 릴리스는 워크플로 마지막 단계가 따로 만드는 구조라, 같은 일을 두 곳에서 하려다 토큰이 없는 쪽이 실패하고 있었습니다.',
+    ],
+    solution: [
+      '릴리스를 만드는 주체를 release.yml 하나로 정하고, 빌드 스크립트에 --publish never를 넣어 electron-builder의 업로드를 껐습니다.',
+      '잘못된 위치의 v1.0.4 태그를 지우고, 머지된 main 커밋과 package.json 버전을 확인한 뒤 다시 태그를 붙였습니다.',
+      '버전이 적힌 README · 설치 매뉴얼 · 기획서와 매뉴얼 PDF를 함께 갱신해 설치파일 이름과 문서가 어긋나지 않게 했습니다.',
+    ],
+    result: [
+      { metric: 'v1.0.4', label: '검증 · 빌드 · 릴리스 첨부 자동화 동작' },
+      { metric: '1곳', label: '릴리스 생성 경로 단일화' },
+    ],
+    resultNote:
+      '이후로는 태그를 붙이기 전에 그 커밋의 버전과 워크플로 포함 여부를 먼저 확인하게 되었습니다.',
+    tech: ['GitHub Actions', 'electron-builder', 'Git 태그', 'Windows 러너', 'Node.js'],
+  },
 ];
 
 const STEPS = [

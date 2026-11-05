@@ -96,11 +96,6 @@ const skillGroups = [
  */
 const learningTrack = [
   {
-    tech: 'Java · Spring Boot',
-    when: '2026.05 —',
-    what: 'Python만 쓰던 상태에서 Spring Data JPA · Flyway를 새로 익혀 장소·리뷰 REST API를 직접 설계 (대동맛지도)',
-  },
-  {
     tech: 'TypeScript · Deno · Hono',
     when: '2026.07 —',
     what: '처음 접한 런타임과 웹 프레임워크로 연합형 마이크로블로그를 구현하고, 코어 라이브러리 버그를 분석해 수정 (Fedify · OSSCA)',

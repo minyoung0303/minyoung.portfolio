@@ -15,10 +15,10 @@ import './App.css';
 const sections = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'projects', label: 'Projects' },
   { id: 'problem-solving', label: 'Solving' },
   { id: 'skills', label: 'Skills' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'experience', label: 'Experience' },
   { id: 'certificate', label: 'Certificate' },
   { id: 'contact', label: 'Contact' },
 ];
@@ -101,10 +101,10 @@ function App() {
       <main>
         <Home onNavigate={scrollToSection} />
         <About />
+        <Experience />
+        <Projects />
         <ProblemSolving />
         <Skills />
-        <Projects />
-        <Experience />
         <Certificate />
         <Contact onNavigate={scrollToSection} />
       </main>

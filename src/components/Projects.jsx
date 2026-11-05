@@ -13,28 +13,33 @@ function Projects() {
 
   const projects = [
     {
-      title: '대동맛지도',
-      subtitle: '개인 프로젝트 · Apps in Toss 출시 예정',
-      period: '2026.05 — 현재',
+      title: '예약보드 (YeyakBo)',
+      subtitle: '개인 프로젝트 · 스크린골프 매장 실사용 중',
+      period: '2026.08 — 운영 중',
       type: 'Solo',
       summary:
-        '사용자 위치 주변의 맛집·카페를 탐색하는 위치 기반 서비스입니다. Python만 쓰던 상태에서 Java · Spring Boot를 새로 익혀 백엔드를 처음부터 직접 설계했고, DB 스키마 버전 관리까지 포함해 혼자 운영 가능한 구조로 만들었습니다.',
+        '스크린골프 매장 카운터용 예약 관리 프로그램입니다. 수기 장부로 예약을 받다 종료 시각을 잘못 계산해 타석 중복 예약이 생기던 문제를, 소요시간 자동 계산과 저장 단계 중복 차단으로 해결했습니다. 인터넷·서버비 없이 카운터 PC 한 대가 매장 와이파이 안에서 서버 역할을 하고, 직원 3명이 폰·태블릿으로 접속해 하루 약 10팀(팀당 2게임 내외)의 예약을 처리합니다.',
       role: [
-        'Java 21 · Spring Boot 기반 장소 · 리뷰 REST API 설계 및 구현',
-        'Spring Data JPA로 도메인 매핑, Flyway로 DB 스키마 마이그레이션 이력 관리',
-        '카테고리 필터 · 리뷰 기능 개발 및 검색 로직 개선',
-        '탐색 반경을 1km → 2km로 확대하며 늘어난 조회 범위에 맞춰 응답 구조 조정',
-        'React(Vite) 프론트엔드와 Kakao Maps SDK 연동까지 단독 처리',
+        '예약 엔진 설계: 인원 × 게임 수로 소요시간을 계산하고, 시간은 자정 기준 분(정수)으로 통일해 경계 오류 제거',
+        '겹침 검사와 저장을 단일 트랜잭션으로 묶어 카운터·태블릿 동시 저장 시 1건만 성공하도록 처리',
+        '전 타석 마감 시 409와 함께 가장 가까운 가능 시각 3개를 계산해 응답',
+        'node:http 위에 라우터를 직접 구현하고, SSE로 폰·태블릿에 예약 변경을 실시간 전파',
+        'PIN 접근 제어: scrypt 해시, 단계별 시도 제한, 기기별 세션 토큰, Origin 검사로 CSRF 차단',
+        '취소·노쇼는 삭제 대신 상태 전환으로 기록 보존, 실행 시 자동 백업과 버전 업그레이드 경로 검증',
+        'AI 도구로 구현하고, AI가 만든 코드는 계산·경계·겹침·동시성·인증 규칙을 실제 서버에 호출하는 자동 점검 80항목으로 검증',
       ],
       result:
-        '백엔드 · 프론트 · 배포를 혼자 담당해 Apps in Toss 미니앱 출시 준비 단계까지 진행. 새로운 언어와 프레임워크를 실제 서비스에 적용할 수 있음을 확인한 프로젝트입니다. (진행 중)',
-      tech: ['Java 21', 'Spring Boot', 'Spring Data JPA', 'Flyway', 'PostgreSQL', 'React', 'Vite', 'Kakao Maps', 'Apps in Toss'],
+        '출시 이후 매장에서 계속 운영 중입니다. 직원 3명이 매장 와이파이로 접속해 하루 약 10팀의 예약을 처리합니다. 자동 점검 80항목(동일 자리 5회 동시 저장 → 1건만 성공 포함)과 타입 검사를 GitHub Actions Windows 러너에서 push마다 실행하고, 버전 태그를 올리면 같은 검증을 거친 뒤 설치파일을 빌드해 릴리스에 자동으로 첨부합니다.',
+      tech: ['TypeScript', 'Node.js', 'node:sqlite', 'SSE', 'React', 'Electron', 'Vite', 'GitHub Actions'],
       images: [
-        `${base}images/daedong-matmap-gantt.png`,
-        `${base}images/daedong-matmap-system.png`,
-        `${base}images/kakaomap.png`,
+        `${base}images/yeyakbo-board.png`,
+        `${base}images/yeyakbo-new-reservation.png`,
+        `${base}images/yeyakbo-phone-slots.png`,
       ],
-      github: 'https://github.com/minyoung0303/daedong-matmap',
+      solvingCase: 'Case 06',
+      github: 'https://github.com/minyoung0303/screengolf-reservation-board',
+      release:
+        'https://github.com/minyoung0303/screengolf-reservation-board/releases/latest',
     },
     {
       title: '냉장고 해방일지',
@@ -170,6 +175,17 @@ function Projects() {
                   <i className="fa-brands fa-github" aria-hidden="true"></i>
                   <span>GitHub</span>
                 </a>
+                {project.release && (
+                  <a
+                    href={project.release}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-link"
+                  >
+                    <i className="fa-solid fa-download" aria-hidden="true"></i>
+                    <span>설치파일</span>
+                  </a>
+                )}
               </div>
 
               {project.images.length > 0 && (
