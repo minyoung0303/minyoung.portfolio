@@ -18,18 +18,19 @@ function Projects() {
       period: '2026.08 — 운영 중',
       type: 'Solo',
       summary:
-        '스크린골프 매장 카운터용 예약 관리 프로그램입니다. 수기 장부로 예약을 받다 종료 시각을 잘못 계산해 타석 중복 예약이 생기던 문제를, 소요시간 자동 계산과 저장 단계 중복 차단으로 해결했습니다. 인터넷·서버비 없이 카운터 PC 한 대가 매장 와이파이 안에서 서버 역할을 하고, 직원 3명이 폰·태블릿으로 접속해 하루 약 10팀(팀당 2게임 내외)의 예약을 처리합니다.',
+        '스크린골프 매장 카운터용 예약 관리 프로그램입니다. 수기 장부에서 생기던 종료 시각 오산과 타석 중복 예약을 자동 계산과 저장 단계 차단으로 해결했습니다.',
       role: [
-        '예약 엔진 설계: 인원 × 게임 수로 소요시간을 계산하고, 시간은 자정 기준 분(정수)으로 통일해 경계 오류 제거',
-        '겹침 검사와 저장을 단일 트랜잭션으로 묶어 카운터·태블릿 동시 저장 시 1건만 성공하도록 처리',
-        '전 타석 마감 시 409와 함께 가장 가까운 가능 시각 3개를 계산해 응답',
-        'node:http 위에 라우터를 직접 구현하고, SSE로 폰·태블릿에 예약 변경을 실시간 전파',
-        'PIN 접근 제어: scrypt 해시, 단계별 시도 제한, 기기별 세션 토큰, Origin 검사로 CSRF 차단',
-        '취소·노쇼는 삭제 대신 상태 전환으로 기록 보존, 실행 시 자동 백업과 버전 업그레이드 경로 검증',
-        'AI 도구로 구현하고, AI가 만든 코드는 계산·경계·겹침·동시성·인증 규칙을 실제 서버에 호출하는 자동 점검 80항목으로 검증',
+        { label: '예약 계산', text: '인원 × 게임 수로 종료 시각 자동 계산' },
+        { label: '중복 차단', text: '겹침 검사와 저장을 한 트랜잭션으로 처리' },
+        { label: '실시간 동기화', text: '카운터 PC를 매장 내 서버로 두고 SSE로 폰·태블릿에 전파' },
+        { label: '접근 제어', text: 'PIN(scrypt 해시) · 시도 제한 · CSRF 차단' },
+        { label: 'AI 활용', text: 'AI로 구현하고 자동 점검 80항목으로 검증' },
       ],
-      result:
-        '출시 이후 매장에서 계속 운영 중입니다. 직원 3명이 매장 와이파이로 접속해 하루 약 10팀의 예약을 처리합니다. 자동 점검 80항목(동일 자리 5회 동시 저장 → 1건만 성공 포함)과 타입 검사를 GitHub Actions Windows 러너에서 push마다 실행하고, 버전 태그를 올리면 같은 검증을 거친 뒤 설치파일을 빌드해 릴리스에 자동으로 첨부합니다.',
+      result: [
+        '매장 실사용 중 · 직원 3명, 하루 약 10팀',
+        '동시 저장 5회 중 1건만 성공 검증',
+        'push마다 CI 검증, 태그 푸시 시 설치파일 자동 릴리스',
+      ],
       tech: ['TypeScript', 'Node.js', 'node:sqlite', 'SSE', 'React', 'Electron', 'Vite', 'GitHub Actions'],
       images: [
         `${base}images/yeyakbo-board.png`,
@@ -136,15 +137,32 @@ function Projects() {
                 <div className="project-role">
                   <h4 className="project-label">담당 역할</h4>
                   <ul>
-                    {project.role.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))}
+                    {project.role.map((item, i) =>
+                      typeof item === 'string' ? (
+                        <li key={i}>{item}</li>
+                      ) : (
+                        <li key={i}>
+                          <strong className="project-role-label">
+                            {item.label}
+                          </strong>
+                          {item.text}
+                        </li>
+                      )
+                    )}
                   </ul>
                 </div>
 
                 <div className="project-result">
                   <h4 className="project-label">성과</h4>
-                  <p>{project.result}</p>
+                  {Array.isArray(project.result) ? (
+                    <ul className="project-result-list">
+                      {project.result.map((r, i) => (
+                        <li key={i}>{r}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p>{project.result}</p>
+                  )}
                   {project.solvingCase && (
                     <a className="project-solving-link" href="#problem-solving">
                       문제 해결 경험 {project.solvingCase}에서 원인 분석 과정
