@@ -36,7 +36,7 @@ function Projects() {
         `${base}images/yeyakbo-new-reservation.png`,
         `${base}images/yeyakbo-phone-slots.png`,
       ],
-      solvingCase: 'Case 06',
+      solvingCase: 'Case 05',
       github: 'https://github.com/minyoung0303/screengolf-reservation-board',
       release:
         'https://github.com/minyoung0303/screengolf-reservation-board/releases/latest',
@@ -55,7 +55,6 @@ function Projects() {
         'JWT 기반 인증/인가 구조 설계로 사용자별 데이터 접근 범위 분리',
       ],
       result: '스키마 정규화와 인덱싱으로 페이지 로딩 시간 약 30% 단축, 데이터 정합성 확보',
-      solvingCase: 'Case 02',
       tech: ['Python', 'Django', 'DRF', 'PostgreSQL', '정규화', '인덱싱', 'JWT', 'Docker', 'AWS'],
       images: [
         `${base}images/ndjango-erd1.png`,
