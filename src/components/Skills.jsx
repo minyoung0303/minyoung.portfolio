@@ -107,7 +107,7 @@ const learningTrack = [
   },
   {
     tech: 'AWS DynamoDB · 트랜잭션',
-    when: '2026.07 —',
+    when: '2026.07 — 2026.09',
     what: 'RDBMS 경험을 기반으로 NoSQL 트랜잭션·조건부 쓰기 모델을 학습해 결제 크레딧 정합성 문제에 적용',
   },
 ];
