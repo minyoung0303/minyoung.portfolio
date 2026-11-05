@@ -14,7 +14,7 @@ function Projects() {
   const projects = [
     {
       title: '예약보드 (YeyakBo)',
-      subtitle: '개인 프로젝트 · 스크린골프 매장 실사용 중',
+      subtitle: '프리랜서 프로젝트 · 스크린골프 매장 실사용 중',
       period: '2026.08 — 운영 중',
       type: 'Solo',
       summary:
