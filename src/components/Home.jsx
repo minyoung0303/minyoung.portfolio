@@ -6,7 +6,7 @@ import './css/Home.css';
  */
 const stats = [
   { value: '2배', label: '검색 쿼리 응답 개선' },
-  { value: '하루 10팀', label: '매장 예약 시스템 운영' },
+  { value: '하루 20팀+', label: '매장 예약 시스템 운영' },
   { value: '10초→2초', label: '사내 데이터 공유 자동화' },
   { value: '50명', label: '사용 백오피스 개발·운영' },
 ];
