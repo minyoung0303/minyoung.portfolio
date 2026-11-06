@@ -14,7 +14,7 @@ function Projects() {
   const projects = [
     {
       title: '예약보드 (YeyakBo)',
-      subtitle: '개인 프로젝트 · 스크린골프 매장 실사용 중',
+      subtitle: '프리랜서 프로젝트 · 스크린골프 매장 실사용 중',
       period: '2026.08 — 운영 중',
       type: 'Solo',
       summary:
@@ -27,7 +27,7 @@ function Projects() {
         { label: 'AI 활용', text: 'AI로 구현하고 자동 점검 80항목으로 검증' },
       ],
       result: [
-        '매장 실사용 중 · 직원 3명, 하루 약 10팀',
+        '매장 실사용 중 · 직원 3명, 하루 약 20팀 이상',
         '동시 저장 5회 중 1건만 성공 검증',
         'push마다 CI 검증, 태그 푸시 시 설치파일 자동 릴리스',
       ],

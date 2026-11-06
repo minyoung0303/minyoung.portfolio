@@ -125,7 +125,7 @@ const cases = [
     tag: 'CI/CD · 릴리스 자동화',
     title: '나가지 않던 릴리스의 원인을 태그 위치와 업로드 주체에서 찾다',
     context:
-      '예약보드 · 개인 프로젝트, 매장 운영 중 (GitHub Actions · electron-builder)',
+      '예약보드 · 프리랜서 프로젝트, 매장 운영 중 (GitHub Actions · electron-builder)',
     problem:
       'README에는 최신 설치파일 다운로드 링크가 있었지만 릴리스 페이지는 비어 있었습니다. 새 버전 v1.0.4 태그를 올리자 워크플로는 실행되었지만, 1.0.3 이름의 설치파일을 만든 뒤 GitHub 토큰이 없다는 오류로 실패했습니다.',
     analysis: [
